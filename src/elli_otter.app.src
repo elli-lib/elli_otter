@@ -1,0 +1,16 @@
+{application, elli_otter,
+ [{description, "OpenTracing instrumentation of Elli"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib,
+    otter
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {maintainers, ["Tristan Sloughter"]},
+  {licenses, ["Apache 2.0"]},
+  {links, [{"Github", "https://github.com/elli-lib/elli_otter"}]}
+ ]}.
