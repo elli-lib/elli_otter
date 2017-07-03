@@ -29,7 +29,9 @@ preprocess(Req, Config=#elli_otter_config{prefix=Prefix}) ->
             start_span(Req, Config, [ParentId]);
         {TraceId, ParentId} ->
             start_span(Req, Config, [TraceId, ParentId])
-    end.
+    end,
+
+    Req.
 
 start_span(Req=#req{raw_path=RawPath, method=Method}, #elli_otter_config{traced_request_attributes=Attributes}, Args) ->
     Operation = <<(to_binary(Method))/binary, ":", RawPath/binary>>,
@@ -58,8 +60,6 @@ postprocess(_Req, Res, _Config) ->
 handle(_Req, _Config) ->
     ignore.
 
-handle_event(request_closed, _, Config) ->
-    finish_exception(request_closed, request_closed, Config);
 handle_event(request_timeout, _, Config) ->
     finish_exception(request_timeout, request_timeout, Config);
 handle_event(request_parse_error, [Reason], Config) ->
