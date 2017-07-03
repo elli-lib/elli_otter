@@ -1,7 +1,7 @@
 %%
 
--record(elli_otter_config, {prefix :: binary(),
+-record(elli_otter_config, {prefix                    :: binary(),
                             traced_request_attributes :: list(),
-                            log_exceptions :: boolean(),
-                            sampling_percent :: integer(),
-                            debug :: boolean()}).
+                            log_exceptions            :: boolean(),
+                            sampling_percent          :: integer(),
+                            debug                     :: boolean()}).
