@@ -52,7 +52,7 @@ do_span(Req, #elli_otter_config{prefix=Prefix,
 postprocess(_Req, Res, _Config) ->
     S = ?status(Res),
     %% error is a special tag to zipkin, so nice to include if it is an error status
-    case S >= 400 of true -> otter_span_pdict_api:tag(<<"error">>, S); _ -> ok end,
+    case S =/= ok andalso S >= 400 of true -> otter_span_pdict_api:tag(<<"error">>, S); _ -> ok end,
     otter_span_pdict_api:tag(<<"http.status">>, S),
     otter_span_pdict_api:finish(),
     Res.
